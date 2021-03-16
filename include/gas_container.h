@@ -15,7 +15,7 @@ namespace idealgas {
 class GasContainer {
  public:
   /**
-   * TODO: Add more parameters to this constructor, and add documentation.
+   *
    */
   GasContainer();
 
@@ -30,9 +30,13 @@ class GasContainer {
    */
   void AdvanceOneFrame();
 
-  void CheckWallCollision();
+  void CheckWallCollision(size_t t);
 
-  void CheckParticleCollision();
+  void CheckParticleCollision(size_t t);
+
+  float GetRandomFloat(float min, float max);
+
+  const std::vector<GasParticle>& getParticles() const;
 
  private:
   /**
@@ -44,6 +48,8 @@ class GasContainer {
   float left_boundary_y;
   float right_boundary_x;
   float right_boundary_y;
+  float particle_count;
+  float particle_radius;
 };
 
 }  // namespace idealgas
