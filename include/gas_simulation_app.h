@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning( disable: 4819 )
 
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"

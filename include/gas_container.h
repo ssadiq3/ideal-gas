@@ -1,6 +1,8 @@
 #pragma once
+#pragma warning( disable: 4819 )
 
 #include "cinder/gl/gl.h"
+#include "gas_particle.h"
 
 using glm::vec2;
 
@@ -28,12 +30,20 @@ class GasContainer {
    */
   void AdvanceOneFrame();
 
+  void CheckWallCollision();
+
+  void CheckParticleCollision();
+
  private:
   /**
    * This variable is just for the purposes of demonstrating how to make a shape move
    * across a screen. Please remove it once you start working on your code.
    */
-  int dummy_variable_ = 0;
+  std::vector<GasParticle> particles_;
+  float left_boundary_x;
+  float left_boundary_y;
+  float right_boundary_x;
+  float right_boundary_y;
 };
 
 }  // namespace idealgas
