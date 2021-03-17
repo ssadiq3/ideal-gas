@@ -15,9 +15,11 @@ namespace idealgas {
 class GasContainer {
  public:
   /**
-   *
+   * Constructs the gas container with random initial positions inside the rectangle.
+   * @param particle_count Number of particles in container
+   * @param particle_radius Radius of particles in container
    */
-  GasContainer();
+  GasContainer(float particle_count, float particle_radius);
 
   /**
    * Displays the container walls and the current positions of the particles.
@@ -30,26 +32,48 @@ class GasContainer {
    */
   void AdvanceOneFrame();
 
+  /**
+   * Checks if particle at given index in particles is touching wall,
+   * and changes velocity appropriately.
+   * @param t index of particle to check in particles
+   */
   void CheckWallCollision(size_t t);
 
+  /**
+   * Checks if particle at given index is colliding with any other particle
+   * and changes velocities accordingly.
+   * @param t index of particle to check collisions for in particles
+   */
   void CheckParticleCollision(size_t t);
 
+  /**
+   * Generates a random float for initial positions in the simulation
+   * @param min lower bound for random float
+   * @param max upper bound for random float
+   * @return random float
+   */
   float GetRandomFloat(float min, float max);
 
-  const std::vector<GasParticle>& getParticles() const;
+  /**
+   * Setter for particle objects vector
+   * @param particles vector for particle instances
+   */
+  void SetParticles(const std::vector<GasParticle>& particles);
+
+  /**
+   * Getter for particles vector
+   * @return vector of current particle instances
+   */
+  const std::vector<GasParticle>& GetParticles() const;
 
  private:
-  /**
-   * This variable is just for the purposes of demonstrating how to make a shape move
-   * across a screen. Please remove it once you start working on your code.
-   */
   std::vector<GasParticle> particles_;
-  float left_boundary_x;
-  float left_boundary_y;
-  float right_boundary_x;
-  float right_boundary_y;
-  float particle_count;
-  float particle_radius;
+  const float left_boundary_x_ = 100;
+  const float left_boundary_y_ = 100;
+  const float right_boundary_x_ = 600;
+  const float right_boundary_y_ = 400;
+  float x_velocity_ = 1;
+  float y_velocity_ = 1;
 };
 
 }  // namespace idealgas

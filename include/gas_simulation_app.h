@@ -22,9 +22,7 @@ class IdealGasApp : public ci::app::App {
   const int kMargin = 100;
 
  private:
-  const float particle_count;
-  const float particle_radius;
-  GasContainer container_;
+  GasContainer container_ = GasContainer(20, 10);
 };
 
 }  // namespace idealgas

@@ -9,23 +9,36 @@ namespace idealgas {
 
 class GasParticle {
  public:
-  const float kRadius = 10;
 
-  GasParticle(vec2 position, vec2 velocity);
+  /**
+   * Constructs gas particle object.
+   * @param position initial position of particle
+   * @param velocity initial velocity of particle
+   * @param radius radius of particle
+   */
+  GasParticle(vec2 position, vec2 velocity, float radius);
+
+  /**
+   * Moves particle by updating position with velocity.
+   */
+  void MoveParticle();
 
   vec2 GetPosition() const { return position_; }
 
   vec2 GetVelocity() const { return velocity_; }
 
+  float GetRadius() const;
+
   void SetPosition(vec2 position);
 
   void SetVelocity(vec2 velocity);
 
-  void MoveParticle();
+  void SetRadius(float radius);
 
  private:
   vec2 position_;
   vec2 velocity_;
+  float radius_;
 };
 }
 
