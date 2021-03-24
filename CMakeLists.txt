@@ -51,7 +51,8 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 list(APPEND SOURCE_FILES    src/gas_container.cc
                             src/gas_simulation_app.cc
-                            src/gas_particle.cc)
+                            src/gas_particle.cc
+                            src/gas_histogram.cc)
 
 list(APPEND TEST_FILES tests/test_gas_container.cc
                         tests/test_gas_particle.cc)

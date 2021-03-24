@@ -3,6 +3,7 @@
 
 #include "cinder/gl/gl.h"
 #include "gas_particle.h"
+#include "gas_histogram.h"
 
 using glm::vec2;
 
@@ -19,12 +20,12 @@ class GasContainer {
    * @param particle_count Number of particles in container
    * @param particle_radius Radius of particles in container
    */
-  GasContainer(float particle_count, float particle_radius);
+  GasContainer(float particle_count, float cent_radius, float cent_mass);
 
   /**
    * Displays the container walls and the current positions of the particles.
    */
-  void Display() const;
+  void Display();
 
   /**
    * Updates the positions and velocities of all particles (based on the rules
@@ -47,6 +48,12 @@ class GasContainer {
   void CheckParticleCollision(size_t t);
 
   /**
+   * Helper for check particle collision that sets the new velocities of particles
+   * @param particle_1 one particle in collision
+   * @param particle_2 other particle in collision
+   */
+  void DoParticleCollision(GasParticle& particle_1, GasParticle& particle_2);
+  /**
    * Generates a random float for initial positions in the simulation
    * @param min lower bound for random float
    * @param max upper bound for random float
@@ -68,12 +75,22 @@ class GasContainer {
 
  private:
   std::vector<GasParticle> particles_;
-  const float left_boundary_x_ = 100;
-  const float left_boundary_y_ = 100;
-  const float right_boundary_x_ = 600;
-  const float right_boundary_y_ = 400;
-  float x_velocity_ = 1;
-  float y_velocity_ = 1;
+  //Instantiate histogram objects to work with in source file
+  GasHistogram histogram_1_ = GasHistogram(5, vec2(100,450),
+                                           vec2(350,700), "green");
+  GasHistogram histogram_2_ = GasHistogram(5, vec2(400, 450),
+                                           vec2(650, 700), "blue");
+  GasHistogram histogram_3_ = GasHistogram(5, vec2(700, 450),
+                                           vec2(950, 700), "red");
+  const float LEFT_BOUNDARY_X_ = 200;
+  const float LEFT_BOUNDARY_Y_ = 100;
+  const float RIGHT_BOUNDARY_X_ = 800;
+  const float RIGHT_BOUNDARY_Y_ = 400;
+  float cent_mass_;
+  float small_mass_;
+  float big_mass_;
+  float x_velocity_ = 2;
+  float y_velocity_ = 2;
 };
 
 }  // namespace idealgas

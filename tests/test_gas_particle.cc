@@ -5,7 +5,7 @@
 using idealgas::GasParticle;
 
 TEST_CASE("Particle Tests") {
-  GasParticle particle = GasParticle(vec2(200, 200), vec2(1, 1), 5);
+  GasParticle particle = GasParticle(vec2(200, 200), vec2(1, 1), 5, 1, "blue");
 
   SECTION("Move particle updates position") {
     particle.MoveParticle();

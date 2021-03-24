@@ -18,11 +18,11 @@ class IdealGasApp : public ci::app::App {
   void draw() override;
   void update() override;
 
-  const int kWindowSize = 875;
+  const int kWindowSize = 1000;
   const int kMargin = 100;
 
  private:
-  GasContainer container_ = GasContainer(20, 10);
+  GasContainer container_ = GasContainer(75, 8, 15);
 };
 
 }  // namespace idealgas
